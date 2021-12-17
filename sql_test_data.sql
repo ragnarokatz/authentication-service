@@ -1,20 +1,21 @@
 /* create table */
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS accounts;
 
-CREATE TABLE users (
+CREATE TABLE accounts (
     id serial PRIMARY KEY,
-    name varchar(12) NOT NULL,
+    username varchar(12) NOT NULL,
+    description varchar(30) NOT NULL,
     age int NOT NULL
 );
 
 
 /* insert data */
-INSERT INTO users (name, age)
-    VALUES ('ragnarokat', 39);
+INSERT INTO accounts (username, description, age)
+    VALUES ('ragnarokat', 'a senior old man', 76);
 
-INSERT INTO users (name, age)
-    VALUES ('bowei', 42);
+INSERT INTO accounts (username, description, age)
+    VALUES ('ragnarok', 'a youthful kid', 5);
 
-INSERT INTO users (name, age)
-    VALUES ('bo', 76);
+INSERT INTO accounts (username, description, age)
+    VALUES ('bowragon', 'a working fellow', 24);
 

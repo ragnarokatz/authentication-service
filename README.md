@@ -12,7 +12,7 @@ A template web api service with postgres SQL as database.
 
 ### Collections
 
-- `users`
+- `products`
 
 ### Local database installation:
 
@@ -37,11 +37,11 @@ A template web api service with postgres SQL as database.
 ### API
 
 - `/` GET - homepage
-- `/users` GET - get a list of users
-- `/users/add` POST - add a user
-- `/users/:user_id` PUT - update a user
-- `/users/:user_id` DEL - delete a user
-- `/users/:user_id` GET - get a user
+- `/products` GET - get a list of products
+- `/products/add` POST - add a product
+- `/products/:product_id` PUT - update a product
+- `/products/:product_id` DEL - delete a product
+- `/products/:product_id` GET - get a product
 
 ### Dev environment setup
 
