@@ -1,7 +1,7 @@
 {
-  "name": "sample project name",
+  "name": "postgres api template",
   "version": "1.0.0",
-  "description": "sample description",
+  "description": "a template web api service with postgres SQL as database",
   "main": "server.js",
   "scripts": {
     "test": "npm run jest",
