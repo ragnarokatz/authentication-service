@@ -1,11 +1,10 @@
-## Pro Skaters Shop Web API
+## Postgres API Template
 
-The web api services for Pro Skaters Shop.
+A template web api service with postgres SQL as database.
 
 ### Application links
 
-- web-app: https://proskaters.herokuapp.com/home
-- web-api: https://proskaters-backend.herokuapp.com/
+- web-api: https://pg-api-template.herokuapp.com/
 
 ### Database
 
@@ -13,7 +12,7 @@ The web api services for Pro Skaters Shop.
 
 ### Collections
 
-- `products`
+- `users`
 
 ### Local database installation:
 
@@ -35,19 +34,14 @@ The web api services for Pro Skaters Shop.
 - `USE_SSL = 0`
 - `PORT = 8080`
 
-### API agreement
+### API
 
 - `/` GET - homepage
-- `/images/add` POST - upload an image file
-- `/products` GET - get a list of products
-- `/products/add` POST - add a product
-- `/products/:product_id` PUT - update a product
-- `/products/:product_id` DEL - delete a product
-- `/products/:product_id` GET - get a product
-
-### Static files
-
-- `/images/filename.jpg` - for an image
+- `/users` GET - get a list of users
+- `/users/add` POST - add a user
+- `/users/:user_id` PUT - update a user
+- `/users/:user_id` DEL - delete a user
+- `/users/:user_id` GET - get a user
 
 ### Dev environment setup
 
