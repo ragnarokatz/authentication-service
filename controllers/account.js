@@ -3,13 +3,13 @@ const Joi = require('joi');
 const pool = require('../database/pool');
 
 const accountSchema = Joi.object({
-  username: Joi.string().required().min(8).max(12).alphanum(),
+  username: Joi.string().alphanum().min(8).max(12).required(),
   description: Joi.string()
-    .required()
+    .regex(/^[a-zA-Z0-9,. ]*$/)
     .min(2)
     .max(30)
-    .regex(/^[a-zA-Z0-9,. ]*$/),
-  age: Joi.number().required().min(1).max(120),
+    .required(),
+  age: Joi.number().integer().min(1).max(120).required(),
 });
 
 module.exports.getAllAccounts = function () {
