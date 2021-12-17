@@ -3,8 +3,12 @@ const Joi = require('joi');
 const pool = require('../database/pool');
 
 const accountSchema = Joi.object({
-  username: Joi.string().required().min(8).max(12),
-  description: Joi.string().required().min(2).max(30),
+  username: Joi.string().required().min(8).max(12).alphanum(),
+  description: Joi.string()
+    .required()
+    .min(2)
+    .max(30)
+    .regex(/^[a-zA-Z0-9,. ]*$/),
   age: Joi.number().required().min(1).max(120),
 });
 
