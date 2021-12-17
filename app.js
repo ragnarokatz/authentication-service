@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.get('/accounts', (req, res) => {
   debug('retrieving all accounts');
   accounts
-    .getAllaccounts()
+    .getAllAccounts()
     .then((data) => {
       res.json(data);
     })
@@ -34,10 +34,10 @@ app.get('/accounts', (req, res) => {
 app.post('/accounts/add', async (req, res) => {
   debug('adding a account');
   accounts
-    .validateaccount(req.body)
+    .validateAccount(req.body)
     .then((data) => {
       accounts
-        .addaccount(data)
+        .addAccount(data)
         .then((result) => {
           res.json(result);
         })
@@ -57,7 +57,7 @@ app.post('/accounts/add', async (req, res) => {
 app.get('/accounts/:account_id', async (req, res) => {
   debug('getting account with id ' + req.params.account_id);
   accounts
-    .getaccount(req.params.account_id)
+    .getAccount(req.params.account_id)
     .then((result) => {
       res.json(result);
     })
@@ -71,10 +71,10 @@ app.get('/accounts/:account_id', async (req, res) => {
 app.put('/accounts/:account_id', async (req, res) => {
   debug('updating account with id ' + req.params.account_id);
   accounts
-    .validateaccount(req.body)
+    .validateAccount(req.body)
     .then((data) => {
       accounts
-        .updateaccount(req.params.account_id, data)
+        .updateAccount(req.params.account_id, data)
         .then((result) => {
           res.json(result);
         })
@@ -94,7 +94,7 @@ app.put('/accounts/:account_id', async (req, res) => {
 app.delete('/accounts/:account_id', async (req, res) => {
   debug('deleting account with id ' + req.params.account_id);
   accounts
-    .deleteaccount(req.params.account_id)
+    .deleteAccount(req.params.account_id)
     .then((result) => {
       res.json(result);
     })
