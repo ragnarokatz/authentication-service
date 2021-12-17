@@ -1,5 +1,5 @@
 {
-  "name": "postgres api template",
+  "name": "postgres-api-template",
   "version": "1.0.0",
   "description": "a template web api service with postgres SQL as database",
   "main": "server.js",
