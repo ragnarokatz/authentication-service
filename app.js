@@ -32,7 +32,8 @@ app.get('/accounts', (req, res) => {
 });
 
 app.post('/accounts/add', async (req, res) => {
-  debug('adding a account');
+  debug('adding account');
+  console.log('adding account');
   accounts
     .validateAccount(req.body)
     .then((data) => {

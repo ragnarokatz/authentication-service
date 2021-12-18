@@ -40,9 +40,10 @@ module.exports.validateAccount = function (account) {
 module.exports.addAccount = function (item) {
   return new Promise(async (resolve, reject) => {
     try {
+        console.log('adding account2');
       const db = await pool.connect();
       var sql = `INSERT INTO accounts (username, description, age) VALUES ('${item.username}', '${item.description}', ${item.age});`;
-      let result = await db.query(sql_insert);
+      let result = await db.query(sql);
       resolve(result);
     } catch (err) {
       debug(err);
@@ -57,7 +58,7 @@ module.exports.getAccount = function (accountId) {
       const db = await pool.connect();
       let accounts = await db.query(`SELECT * FROM accounts WHERE id = '${accountId}';`);
       if (accounts.rowCount == 0) {
-        let err = 'account id does not exist!';
+        let err = 'account id does not exist';
         reject(err);
       }
       if (accounts.rowCount > 1) {
@@ -80,8 +81,8 @@ module.exports.updateAccount = function (accountId, item) {
         let err = 'account id does not match';
         reject(err);
       }
-      var sql_update = `UPDATE accounts SET username = '${item.username}', description = '${item.description}',  age= ${item.age} WHERE id = '${accountId}';`;
-      let result = await db.query(sql_update);
+      var sql = `UPDATE accounts SET username = '${item.username}', description = '${item.description}',  age= ${item.age} WHERE id = '${accountId}';`;
+      let result = await db.query(sql);
       resolve(result);
     } catch (err) {
       debug(err);
@@ -94,8 +95,8 @@ module.exports.deleteAccount = function (accountId) {
   return new Promise(async (resolve, reject) => {
     try {
       const db = await pool.connect();
-      var sql_delete = `DELETE FROM accounts WHERE id = '${accountId}';`;
-      let result = await db.query(sql_delete);
+      var sql = `DELETE FROM accounts WHERE id = '${accountId}';`;
+      let result = await db.query(sql);
       resolve(result);
     } catch (err) {
       debug(err);
