@@ -3,18 +3,6 @@ const request = require('supertest');
 const app = require('../../app');
 const pool = require('../../database/pool');
 
-var testData = {
-  username: 'goodname',
-  description: 'good description',
-  age: 13,
-};
-
-var badData = {
-  username: 'goodname',
-  description: 'good description_nope',
-  age: 13,
-};
-
 beforeAll(async () => {
   try {
     const db = await pool.connect();
@@ -39,9 +27,22 @@ afterAll(async () => {
 
 describe('api endpoint testing', () => {
   let id = 0;
+  let testData = {
+    username: 'goodname',
+    description: 'good description',
+    age: 13,
+  };
+
+  let badData = {
+    username: 'goodname',
+    description: 'good description_nope',
+    age: 13,
+  };
+
   it('visiting root', () => {
     return request(app).get('/').expect(200);
   });
+
   it('visiting undefined route', () => {
     return request(app).get('/undefined').expect(404);
   });
@@ -89,7 +90,7 @@ describe('api endpoint testing', () => {
 
   it('updating account with bad data', () => {
     return request(app)
-      .post('/accounts/' + id)
+      .put('/accounts/' + id)
       .send(badData)
       .expect(404);
   });
