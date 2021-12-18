@@ -38,6 +38,7 @@ afterAll(async () => {
 });
 
 describe('api endpoint testing', () => {
+  let id = 0;
   it('visiting root', () => {
     return request(app).get('/').expect(200);
   });
@@ -45,8 +46,16 @@ describe('api endpoint testing', () => {
     return request(app).get('/undefined').expect(404);
   });
 
-  it('adding account', () => {
-    return request(app).post('/accounts/add').send(testData).expect(200);
+  it('adding account', (done) => {
+    request(app)
+      .post('/accounts/add')
+      .send(testData)
+      .expect(200)
+      .end((err, res) => {
+        expect(res.body).toHaveProperty('id');
+        id = res.body.id;
+        done();
+      });
   });
 
   it('adding account with bad data', () => {
@@ -55,7 +64,7 @@ describe('api endpoint testing', () => {
 
   it('getting account', (done) => {
     request(app)
-      .get('/accounts/4')
+      .get('/accounts/' + id)
       .expect(200)
       .end((err, res) => {
         expect(res.body).toMatchObject(testData);
@@ -64,7 +73,7 @@ describe('api endpoint testing', () => {
   });
 
   it('getting account that does not exist', () => {
-    return request(app).get('/accounts/9574').expect(404);
+    return request(app).get('/accounts/9571234').expect(404);
   });
 
   it('getting all accounts', () => {
@@ -72,18 +81,22 @@ describe('api endpoint testing', () => {
   });
 
   it('updating account', () => {
-    return request(app).put('/accounts/4').send(testData).expect(200);
+    return request(app)
+      .put('/accounts/' + id)
+      .send(testData)
+      .expect(200);
   });
 
   it('updating account with bad data', () => {
-    return request(app).post('/accounts/9574').send(badData).expect(404);
-  });
-
-  it('updating account with non matching id', () => {
-    return request(app).put('/accounts/9574').send(testData).expect(404);
+    return request(app)
+      .post('/accounts/' + id)
+      .send(badData)
+      .expect(404);
   });
 
   it('deleting account', () => {
-    return request(app).delete('/accounts/4').expect(200);
+    return request(app)
+      .delete('/accounts/' + id)
+      .expect(200);
   });
 });
